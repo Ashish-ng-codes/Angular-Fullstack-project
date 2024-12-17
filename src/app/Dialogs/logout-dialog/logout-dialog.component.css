@@ -1,0 +1,12 @@
+
+.mat-dialog-container {
+    border-radius: 0; /* Removes rounded corners */
+}
+
+.mat-dialog-content {
+    padding: 20px; /* Adjust padding as needed */
+}
+
+.mat-dialog-actions {
+    padding: 10px; /* Adjust padding as needed */
+}

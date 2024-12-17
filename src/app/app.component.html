@@ -1,0 +1,19 @@
+<!-- Tool bar -->
+
+<mat-toolbar class="bg-muted p-2 toolbar row">
+    <p class="col-md-4 justify-content-center ml-4"><img src="assets/images/yamaha-logo.png" alt="yamaha-logo" routerLink="home"></p>
+    <h1 class="col-md-4 mb-2 fw-bold title">Yamaha Adventure Access</h1>
+     <p class="col-md-4 text-dark justify-content-end">
+         <span><a class="link" routerLink="home" routerLinkActive="active">Home</a></span>
+         <span><a class="link" routerLink="motorcycles" routerLinkActive="active">MotorCycles</a></span>
+         <span><a class="link" routerLink="scooters" routerLinkActive="active">Scooters</a></span>
+         <span><a class="link" routerLink="helmets" routerLinkActive="active">Helmets</a></span>
+         <span><a class="link" routerLink="booking" routerLinkActive="active">Book</a></span>
+     </p>    
+ </mat-toolbar>  
+
+ 
+<div class="content">
+    <router-outlet></router-outlet>
+</div>
+

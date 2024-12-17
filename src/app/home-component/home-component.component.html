@@ -1,0 +1,5 @@
+<div class="image-scroll-container">
+    <button class="btn fw-bold text-danger" (click)="openSignupDialog()" *ngIf="btnService.isSignupVisible()">SignUp</button>
+    <button class="btn fw-bold text-danger" (click)="openLoginDialog()" *ngIf="btnService.isLoginVisible()">Login</button>
+    <button class="btn fw-bold text-danger"  (click)="openLogoutDialog()" *ngIf="btnService.isLogoutVisible()" >Logout</button>
+</div>  

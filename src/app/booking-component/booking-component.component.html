@@ -1,0 +1,253 @@
+<!-- <button class="btn btn-danger ml-2" *ngIf="showViewButton" (click)="viewRecords()">View Records</button> -->
+<form novalidate #myform="ngForm" *ngIf="showForm">
+  <mat-card [ngClass]="'formColor'">
+    <mat-card-content>
+      <mat-grid-list cols="4" rowHeight="100px" gutterSize="16px">
+        <mat-grid-tile>
+          <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input matInput name="firstName" #fname="ngModel" [(ngModel)]="user.FirstName" required pattern="[A-Za-z]+"
+              (ngModelChange)="onFormChange()">
+            <div *ngIf="fname.errors && fname.touched">
+              <mat-error class="text-danger" *ngIf="fname.errors['required']">First name is required</mat-error>
+              <mat-error class="text-danger" *ngIf="fname.errors['pattern']">Only alphabests are allowed</mat-error>
+            </div>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input matInput required name="lastName" #lname="ngModel" [(ngModel)]="user.LastName" pattern="[A-Z a-z]+"
+              (ngModelChange)="onFormChange()">
+            <div *ngIf="lname.errors && lname.touched">
+              <mat-error class="text-danger" *ngIf="lname.errors['required']">Last name is required</mat-error>
+              <mat-error class="text-danger" *ngIf="lname.errors['pattern']">Only alphabests are allowed</mat-error>
+            </div>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput required type="email" #email="ngModel" name="email" [(ngModel)]="user.Email"
+              pattern="[^\s@]+@[^\s@]+\.[^\s@]+" (ngModelChange)="onFormChange()">
+            <div *ngIf="email.errors && email.touched">
+              <mat-error class="text-danger" *ngIf="email.errors['required']">Email is required</mat-error>
+              <mat-error class="text-danger" *ngIf="email.errors['pattern']">Incorrect email</mat-error>
+            </div>
+            <mat-hint align="end">e.g. user&#64;ex.com</mat-hint>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field>
+            <mat-label>Gender</mat-label>
+            <mat-select name="gender" [(ngModel)]="user.Gender">
+              <mat-option value="male">Male</mat-option>
+              <mat-option value="female">Female</mat-option>
+              <mat-option value="other">Other</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field>
+            <mat-label>City</mat-label>
+            <mat-select name="city" [(ngModel)]="user.City" (ngModelChange)="onFormChange()" required>
+              <mat-option *ngFor="let city of cityPincodeMap | keyvalue" [value]="city.key">
+                {{ city.key }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field>
+            <mat-label>Pincode</mat-label>
+            <input matInput [matAutocomplete]="auto" name="pincode" required #pincode="ngModel"
+              [(ngModel)]="user.Pincode" type="text" (ngModelChange)="onFormChange()">
+            <mat-autocomplete #auto="matAutocomplete">
+            </mat-autocomplete>
+            <small class="text-danger" *ngIf="pincode.errors && pincode.touched">pincode required</small>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field>
+            <mat-label>Vehicle</mat-label>
+            <input required name="vehicle" [(ngModel)]="user.Vehicle" #vehicle="ngModel" matInput readonly
+              (ngModelChange)="onFormChange()">
+            <small *ngIf="vehicle.errors && vehicle.touched" class="text-danger">Vehicle required</small>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field>
+            <mat-label>Helmet</mat-label>
+            <input matInput name="helmet" [(ngModel)]="user.Helmet" readonly (ngModelChange)="onFormChange()">
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field>
+            <mat-label>License Type</mat-label>
+            <mat-select required name="licenseType" #license="ngModel" [(ngModel)]="user.LicenseType"
+              (ngModelChange)="onFormChange()">
+              <mat-option value="learner">Learner's Permit</mat-option>
+              <mat-option value="full">Full License</mat-option>
+              <mat-option value="commercial">Commercial License</mat-option>
+            </mat-select>
+            <small class="text-danger" *ngIf="license.errors && license.touched">License type required</small>
+          </mat-form-field>
+        </mat-grid-tile>
+
+
+        <mat-grid-tile>
+          <mat-form-field>
+            <mat-label>Phone Number</mat-label>
+            <input maxlength="10" matInput required type="tel" name="phoneNumber" #phone="ngModel"
+              [(ngModel)]="user.PhoneNumber" pattern="^[0-9]+$" (ngModelChange)="onFormChange()">
+            <div *ngIf="phone.errors && phone.touched">
+              <small class="text-danger" *ngIf="phone.errors['required']">Phone number required</small>
+              <small class="text-danger" *ngIf="phone.errors['pattern']">No characters are allowed</small>
+            </div>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field>
+            <mat-label>Booking Date</mat-label>
+            <input matInput [matDatepicker]="picker" required name="bookingDate" #bookingDate="ngModel"
+              [(ngModel)]="user.BookingDate" type="text" (ngModelChange)="onFormChange()">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <small class="text-danger" *ngIf="bookingDate.errors && bookingDate.touched">Booking date required</small>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field>
+            <mat-label>Total Cost</mat-label>
+            <input matInput name="totalCost" [(ngModel)]="user.TotalCost" readonly (ngModelChange)="onFormChange()">
+          </mat-form-field>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+
+    </mat-card-content>
+    <mat-card-actions align="end" class="d-flex justify-content-end">
+      <button class="btn btn-primary m-2" *ngIf="showClearButton" (click)="ResetFormFields()">Clear</button>
+      <button class="btn btn-success " *ngIf="showBookButton" (click)="onSubmit(myform)">Book</button>
+      <button class="btn btn-danger m-2" *ngIf="showBackButton" (click)="backToTable()">Back</button>
+      <button class="btn btn-success" (click)="update()" *ngIf="showUpdateButton">Update</button>
+    </mat-card-actions>
+  </mat-card>
+
+</form>
+
+<div class="container-fluid mt-3 mat-elevation-z8" *ngIf="showTable" [ngClass]="'table'">
+
+  <table mat-table [dataSource]="dataSource" >
+    <ng-container matColumnDef="Id">
+      <th mat-header-cell *matHeaderCellDef class="bg-dark text-white fw-bold">ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
+    </ng-container>
+    <!-- First Name Column -->
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef class="bg-dark text-white fw-bold"> First Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+    </ng-container>
+
+    <!-- Last Name Column -->
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef class="bg-dark text-white fw-bold"> Last Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef class="bg-dark text-white fw-bold"> Email </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+
+    <!-- Gender Column -->
+    <ng-container matColumnDef="gender">
+      <th mat-header-cell *matHeaderCellDef class="bg-dark text-white fw-bold"> Gender </th>
+      <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+    </ng-container>
+
+
+    <!-- Pincode Column -->
+    <ng-container matColumnDef="pincode">
+      <th mat-header-cell *matHeaderCellDef class="bg-dark text-white fw-bold"> Pincode </th>
+      <td mat-cell *matCellDef="let element"> {{element.pincode}} </td>
+    </ng-container>
+    <!-- City Column -->
+    <ng-container matColumnDef="city">
+      <th mat-header-cell *matHeaderCellDef class="bg-dark text-white fw-bold"> City </th>
+      <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+    </ng-container>
+
+    <!-- Vehicle Column -->
+    <ng-container matColumnDef="vehicle">
+      <th mat-header-cell *matHeaderCellDef class="bg-dark text-white fw-bold"> Vehicle </th>
+      <td mat-cell *matCellDef="let element"> {{element.vehicle}} </td>
+    </ng-container>
+
+    <!-- Helmet Column -->
+    <ng-container matColumnDef="helmet">
+      <th mat-header-cell *matHeaderCellDef class="bg-dark text-white fw-bold"> Helmet </th>
+      <td mat-cell *matCellDef="let element"> {{element.helmet}} </td>
+    </ng-container>
+
+
+    <!-- License Type Column -->
+    <ng-container matColumnDef="licenseType">
+      <th mat-header-cell *matHeaderCellDef class="bg-dark text-white fw-bold"> License Type </th>
+      <td mat-cell *matCellDef="let element"> {{element.licenseType}} </td>
+    </ng-container>
+
+    <!-- Booking Date Column -->
+    <ng-container matColumnDef="bookingDate" >
+      <th mat-header-cell *matHeaderCellDef class="bg-dark text-white fw-bold"> Booking Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.bookingDate | date:'MM/dd/yyyy'}} </td>
+    </ng-container>
+
+    <!-- Phone Number Column -->
+    <ng-container matColumnDef="phoneNumber">
+      <th mat-header-cell *matHeaderCellDef class="bg-dark text-white fw-bold"> Phone Number </th>
+      <td mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
+    </ng-container>
+
+    <!-- Total Cost Column -->
+    <ng-container matColumnDef="totalCost">
+      <th mat-header-cell *matHeaderCellDef class="bg-dark text-white fw-bold"> Total Cost </th>
+      <td mat-cell *matCellDef="let element"> {{element.totalCost | currency:'INR':'symbol':'1.0-0'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Actions">
+      <th mat-header-cell *matHeaderCellDef class="bg-dark text-white fw-bold">Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon [matMenuTriggerFor]="menu">more_vert</mat-icon>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="edit(element)">
+            <mat-icon>edit</mat-icon>
+            Edit
+          </button>
+          <button mat-menu-item (click)="delete(element)">
+            <mat-icon>delete</mat-icon>
+            Delete
+          </button>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <!-- <mat-paginator  [pageSizeOptions]="[5,10,15,20]" showFirstLastButtons></mat-paginator> -->
+</div>
+<div class="d-flex justify-content-center align-items-center" style="height: 10vh;">
+  <button class="btn btn-danger mt-2" *ngIf="backToHomeButton" routerLink="/home">Back</button>
+</div>

@@ -1,0 +1,48 @@
+.toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: #f8f9fa; 
+    height: 64px; 
+}
+
+.content{
+    margin: 0;
+    padding-top: 64px; 
+}
+
+.toolbar span{
+    margin-left:25px;
+}
+.link{
+    font-family: 'Open Sans', Arial, sans-serif; 
+    font-size:14px; 
+    color: #0e0e11; 
+    margin-top: 0.5rem; 
+    margin-bottom: 1rem; 
+    text-align: center;
+    font-style: italic;
+    text-decoration: none;
+    text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
+}
+.link:hover{
+    color:rgb(57, 57, 160);
+}
+
+.link.active{
+    font-weight: bold;
+    color:rgb(57, 57, 160);
+}
+
+.title {
+    font-family: 'Open Sans', Arial, sans-serif; 
+    color: #f9fafd; 
+    text-align: center;
+    font-size: 30px;
+    background-color: blue;
+    font-style: italic;
+    text-decoration: none;
+    text-shadow: 4px 6px 6px rgba(0, 0, 0, 0.5); 
+}

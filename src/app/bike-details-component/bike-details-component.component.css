@@ -1,0 +1,35 @@
+.text-center{
+    font-weight: bold;
+    font-size: 20px;
+    margin:0
+}
+
+.name{
+    font-family: 'Open Sans', Arial, sans-serif;
+    color: #333;
+    font-size:25px;
+    font-style: italic;
+    text-shadow: 3px 6px 4px rgba(0, 0, 0, 0.3);
+}
+.price {
+    font-family: 'Open Sans', Arial, sans-serif; 
+    font-size: 1rem; 
+    color: #2511d8f6; 
+    font-style: italic;
+    text-align: center; 
+    text-shadow: 3px 6px 4px rgba(0, 0, 0, 0.3);
+}
+.text-muted{
+    font-size: 15px;
+    font-style: italic;
+}
+.list-group{
+    font-family: 'Open Sans', Arial, sans-serif;
+    color: #333;
+    font-size:17px;
+    font-style: italic;
+}
+.no-border .list-group-item {
+    border: none; 
+    padding: 10px 15px; 
+}

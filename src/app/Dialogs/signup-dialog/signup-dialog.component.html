@@ -1,0 +1,19 @@
+<h3 class="fw-bold p-1" mat-dialog-title>SignUp</h3>
+<form #myform="ngForm" novalidate (ngSubmit)="onSignup(myform)">
+    <mat-dialog-content>
+        <input type="text" required name="username" placeholder="Username" class="form-control"
+            [(ngModel)]="signupObj.username"><br>
+        <input type="email" required name="email" #email="ngModel" [(ngModel)]="signupObj.email" placeholder="Email"
+            class="form-control" pattern="[^\s@]+@[^\s@]+\.[^\s@]+">
+        <small class="text-danger" *ngIf="email.errors && email.touched">
+            <span *ngIf="email.errors['required']">Email Required</span>
+            <span *ngIf="email.errors['pattern']">Incorrect Email</span>
+        </small><br>
+        <input matInput type="password" required name="password" placeholder="Password" class="form-control"
+            [(ngModel)]="signupObj.password">
+
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button class="btn btn-primary">SignUp</button>
+    </mat-dialog-actions>
+</form>

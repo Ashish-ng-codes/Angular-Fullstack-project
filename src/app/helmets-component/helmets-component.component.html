@@ -1,0 +1,32 @@
+
+
+<img src="assets/images/Helmets.png" alt="motorcycle" class="mb-2">
+
+<div class="button-container" style="display: flex;">
+    <button class="btn btn-secondary align-item-end" style="margin-left: auto;" *ngIf="showBookButton" (click)="book()">Book</button>
+    <button class="btn btn-secondary  align-item-end" style="margin-left: auto;" *ngIf="showSkipButton" (click)="book()">Skip</button>
+</div>
+
+<mat-grid-list cols="4" rowHeight="350px" gutterSize="6px" class="mb-3">
+   <mat-grid-tile *ngFor="let item of helmets">
+       <mat-card class="card p-4"> 
+           <mat-card-content>
+               <img [src]="item.imgSrc" alt="{{item.name}}" style="width: 100%; height: auto;">
+               <div class="text-center">
+                   <p class="name">{{item.name}}</p>
+                   <p class="price">Rs.{{item.price}}</p>
+                   <button class="btn text-secondary" (click)="addHelmet(item)" *ngIf="!isSelected(item)">Add</button>
+                   <button class="btn text-danger" (click)="removeHelmet(item)" *ngIf="isSelected(item)">Remove</button>
+               </div>
+           </mat-card-content>  
+       </mat-card>
+   </mat-grid-tile>
+</mat-grid-list>
+
+
+
+
+
+
+
+

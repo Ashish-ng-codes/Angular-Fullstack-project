@@ -1,0 +1,17 @@
+<h3 class="fw-bold p-1" mat-dialog-title>Login</h3>
+<form #myform="ngForm" (ngSubmit)="onLogin(myform)" class="login">
+    <mat-dialog-content>
+        <input type="email" required name="Email" #Email="ngModel" [(ngModel)]="loginObj.Email" placeholder="Email"
+            class="form-control" pattern="[^\s@]+@[^\s@]+\.[^\s@]+">
+        <small class="text-danger" *ngIf="Email.errors && Email.touched">
+            <span *ngIf="Email.errors['required']">Email Required</span>
+            <span *ngIf="Email.errors['pattern']">Incorrect Email</span>
+        </small><br>
+
+        <input type="password" required name="password" placeholder="Password" [(ngModel)]="loginObj.password"
+            class="form-control">
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button class="btn btn-primary">Login</button>
+    </mat-dialog-actions>
+</form>

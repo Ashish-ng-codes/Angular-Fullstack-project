@@ -1,0 +1,17 @@
+<img src="assets/images/Scooters.png" alt="scooters">
+
+<mat-grid-list cols="3" rowHeight="430px" gutterSize="16px" class="mb-3">
+    <mat-grid-tile *ngFor="let item of Scooters">
+        <mat-card class="card p-4"> 
+            <mat-card-content>
+                <img [src]="item.imgSrc" alt="{{item.name}}" style="width: 100%; height: auto;">
+                <div class="text-center">
+                    <p class="name">{{item.name}}</p>
+                    <span class="text-muted p-2">Booking Amount <span class="price">Rs.{{item.price}}</span></span><br>
+                    <a routerLink="/bikeDetails" class="bttn" (click)="details(item)">Explore<mat-icon class="p-1">arrow_forward</mat-icon></a>
+                </div>
+            </mat-card-content>  
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>
+

@@ -1,0 +1,30 @@
+<div class="grid-container m-2">
+    <mat-grid-list cols="2" rowHeight="600px" gutterSize="0px">
+        <mat-grid-tile *ngFor="let data of toBeExploreItems">
+                    <img [src]="data.imgSrc" alt="{{data.name}}" style="width: 100%; height: auto;">
+                    <div class="text-center">
+                        <p class="name">{{data.name}}</p>
+                        <span class="text-muted p-2">Booking Amount <span class="price">Rs.{{data.price}}</span></span><br>
+                    </div>
+        </mat-grid-tile>
+
+        <mat-grid-tile *ngFor="let data of toBeExploreItems">
+            <ul class="list-group no-border">
+                <li class="list-group-item"><strong>Power:</strong> {{data.power}}</li>
+                <li class="list-group-item"><strong>Performance:</strong> {{data.performance}}</li>
+                <li class="list-group-item"><strong>Fuel Tank Capacity:</strong> {{data.fuelTankCapacity}}</li>
+                <li class="list-group-item"><strong>Engine Capacity:</strong> {{data.engineCapacity}}</li>
+                <li class="list-group-item"><strong>Color:</strong> {{data.color}}</li>
+                <li class="list-group-item"><strong>Model:</strong> {{data.model}}</li>
+                <li class="list-group-item"><strong>Mileage:</strong> {{data.mileage}}</li>
+                <li class="list-group-item"><strong>Kerb Weight:</strong> {{data.kerbWeight}}</li>
+                <li class="list-group-item"><strong>Seat Height:</strong> {{data.seatHeight}}</li>
+                <li class="list-group-item"><strong>Transmission:</strong> {{data.transmission}}</li><br>
+                <div class="row justify-content-between">
+                    <button class="col-3 btn btn-danger" (click)="back()">Back</button>
+                    <button class="col-3 btn btn-success" routerLink="/helmets" (click)="addingBike(data)">Add</button> 
+                </div>       
+            </ul>                  
+        </mat-grid-tile>
+    </mat-grid-list>    
+</div>

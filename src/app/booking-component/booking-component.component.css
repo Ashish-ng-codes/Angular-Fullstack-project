@@ -1,0 +1,23 @@
+.text-danger{
+    font-size: small;
+}
+.body{
+    background-color: bisque;
+}
+
+
+.formColor{
+    background-color: rgb(185, 231, 216);
+    width:60%;
+    margin:auto;
+    margin-top: 50px;
+}
+
+.field{
+    background-color: beige;
+}
+
+.tableHeading{
+    background-color: black;
+    color:antiquewhite;
+}
